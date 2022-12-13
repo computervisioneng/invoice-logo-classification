@@ -13,7 +13,7 @@ def process_detections(detections):
         return 'unknown'
     elif len(detections) == 1:
         return detections[0]['category']
-    elif len(detections) > 1 and len([j for j in detections if j['score'] > 0.6]) > 1:
+    elif len(detections) > 1 and (len([j for j in detections if j['score'] > 0.6]) > 1 or len([j for j in detections if j['score'] > 0.6]) == 0):
         return 'unknown'
     else:
         return [j for j in detections if j['score'] > 0.6][0]['category']
